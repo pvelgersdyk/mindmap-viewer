@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template_string
+from flask import Flask, request, render_template_string, send_from_directory
 import uuid
 import os
 import json
@@ -96,8 +96,7 @@ def home():
 
 @app.route("/openapi.yaml")
 def serve_openapi():
-    return open("openapi.yaml").read(), 200, {"Content-Type": "text/yaml"}
-
+    return send_from_directory(directory=os.getcwd(), path="openapi.yaml", mimetype="text/yaml")
 
 if __name__ == "__main__":
     import os
