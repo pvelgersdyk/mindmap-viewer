@@ -4,7 +4,7 @@ info:
   version: 1.0.0
 
 servers:
-  - url: https://ce253e87-dad6-4f01-9ae3-7587da5fb64e-00-7pxrikl0eokv.riker.replit.dev/
+  - url: https://mindmap-viewer.onrender.com/
 
 paths:
   /generate:
