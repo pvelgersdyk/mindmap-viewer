@@ -2,6 +2,7 @@ from flask import Flask, request, render_template_string, send_from_directory
 import uuid
 import os
 import json
+import re
 import xml.etree.ElementTree as ET
 
 app = Flask(__name__, static_folder='static', static_url_path='/static')
@@ -77,7 +78,8 @@ def generate():
     html = render_template_string(HTML_TEMPLATE,
                                   title=title,
                                   data=json.dumps(mind_data))
-    filename = f"{uuid.uuid4().hex}.html"
+    safe_title = re.sub(r'\W+', '_', title.strip()).lower()
+    filename = f"{safe_title}.html"
     os.makedirs("static", exist_ok=True)
     filepath = os.path.join("static", filename)
     with open(filepath, "w", encoding="utf-8") as f:
