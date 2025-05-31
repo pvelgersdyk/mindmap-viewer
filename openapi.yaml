@@ -59,7 +59,8 @@ paths:
                 - mindmap
       responses:
         '200':
-          description: A URL pointing to the public mind map viewer
+          description: |
+  Generates a visual HTML mind map from an OPML file and returns a direct, public URL to the viewer file hosted at /static/{filename}. This URL can be clicked and opened in a browser directly.
           content:
             application/json:
               schema:
