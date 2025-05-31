@@ -1,0 +1,69 @@
+openapi: 3.1.0
+info:
+  title: Mind Map Viewer API
+  version: 1.0.0
+
+servers:
+  - url: https://ce253e87-dad6-4f01-9ae3-7587da5fb64e-00-7pxrikl0eokv.riker.replit.dev/
+
+paths:
+  /generate:
+    post:
+      operationId: generateMindMapViewer
+      summary: Generates a public mind map viewer from MindElixir JSON
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                mindmap:
+                  type: object
+                  properties:
+                    nodeData:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        topic:
+                          type: string
+                        root:
+                          type: boolean
+                        children:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              topic:
+                                type: string
+                              children:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    topic:
+                                      type: string
+                                  required:
+                                    - topic
+                            required:
+                              - topic
+                      required:
+                        - id
+                        - topic
+                        - root
+              required:
+                - title
+                - mindmap
+      responses:
+        '200':
+          description: A URL pointing to the public mind map viewer
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url:
+                    type: string
